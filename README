@@ -1,0 +1,16 @@
+= Blog
+
+This is a mashup of extensions, aiming to provide a good basis for blogging.
+It uses:
+
+* Admin Tree Structure
+
+Alters the page index view for children of ArchivePages. They are split up per year and month, keep a better overview.
+By Daniel Sheppard (http://soxbox.no-ip.org/radiant/svn/extensions/admin_tree_structure/)
+
+* Blog tags
+
+Adds several tags that come in handy for building your blog pages. I also added an r:archive_list tag which depends on the a_t_s extension.
+By Sean Santry (http://seansantry.com/svn/radiant/extensions/blogtags/trunk/)
+
+This extension also has some tweaks to play nice with SiteLanguage extension.
