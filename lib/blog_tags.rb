@@ -190,6 +190,13 @@ module BlogTags
     "<img src=\"http://www.gravatar.com/avatar/#{hash}\" #{tag_options}/>"
   end
   
+  tag 'rfc3339_date' do |tag|
+    page = tag.locals.page
+    if date = page.published_at || page.created_at
+      date.to_time.xmlschema
+    end
+  end
+  
   private
   
   def find_archive_items_in(url, status = "")
