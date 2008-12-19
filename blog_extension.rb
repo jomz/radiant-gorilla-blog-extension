@@ -6,12 +6,12 @@ class BlogExtension < Radiant::Extension
   description "A mashup of several extensions aiming to be a good basis for blogging"
   url "http://gorilla-webdesign.be"
   
-  breaks_tests 'Admin::PageControllerTest', %w{test_index__with_cookie} if respond_to?(:breaks_tests)
+  breaks_tests 'Admin::PagesControllerTest', %w{test_index__with_cookie} if respond_to?(:breaks_tests)
   
   def activate
     # admin_tree_structure stuff
-    Admin::PageController.send(:include, PageControllerChildren)
-    Admin::NodeHelper.send(:include, NodeHelperChanges)
+    Admin::PagesController.send(:include, PageControllerChildren)
+    Admin::NodesHelper.send(:include, NodeHelperChanges)
     ArchivePage.send(:include, ArchivePageTreeStructure)
     # blog_tags stuff
     Page.send(:include, BlogTags)
