@@ -11,7 +11,7 @@ class BlogExtension < Radiant::Extension
   def activate
     # admin_tree_structure stuff
     Admin::PagesController.send(:include, PageControllerChildren)
-    Admin::NodesHelper.send(:include, NodeHelperChanges)
+    Admin::NodeHelper.send(:include, NodeHelperChanges)
     ArchivePage.send(:include, ArchivePageTreeStructure)
     # blog_tags stuff
     Page.send(:include, BlogTags)
