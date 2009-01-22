@@ -1,0 +1,5 @@
+<td class="reorder">
+	<% unless simple || !(Page === page) || page.children.length < 1 -%>
+	  <%= link_to image('reorder', :alt => 'Reorder'), page_reorder_children_url(:id => page) %>
+	<% end %>
+</td>

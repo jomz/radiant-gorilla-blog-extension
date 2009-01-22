@@ -1,0 +1,48 @@
+    <tr id="page-<%= page.id %>" class="node level-<%= level %><%= children_class %><%= virtual_class %>">
+      <% render_region :node, :locals => {:page => page, :level => level, :simple => simple} do |node| %>
+        <% node.title_column do %>
+        <td class="page" style="padding-left: <%= padding_left(level) %>px">
+          <span class="w1">
+          <% if simple -%>
+            <%= icon %>
+            <%= node_title %>
+          <% elsif Page === page -%>
+          	<% if defined?(SiteLanguage)  && SiteLanguage.count > 0 %>
+				<%= expander %>
+				<%= icon %> <%= node_title %>
+				<% SiteLanguage.codes.each do |l| -%>
+	        		<small><a href="<%= translated_page_edit_url(:id => page, :language => l) %>" title="<%= page.url %>"><%= l %></a></small>
+				<% 	end 
+			  else -%>
+          		<%= expander %><a href="<%= edit_admin_page_url(:id => page) %>" title="<%= page.url %>"><%= icon %> <%= node_title %></a> 
+			<% end %>
+            <%= page_type %>
+            <%= spinner %>
+          <% else -%>
+            <%= expander %><%= icon %> <%= node_title %>
+            <%= page_type %>
+            <%= spinner %>
+          <% end -%>
+          </span>
+        </td>
+        <% end %>
+        <% node.status_column do %>
+          <% unless simple || !page.respond_to?(:published_at) -%><td class="status <%= page.status.name.downcase %>-status"><%= page.status.name %></td><% else %><td class="status"></td><% end %>
+        <% end %>
+        <% node.add_child_column do %>
+          <% unless simple || !page.respond_to?(:published_at) -%><td class="add-child"><%= link_to image('add-child', :alt => 'add child'), new_admin_page_url(:parent_id => page) %></td><% else %><td class="add-child"></td><% end %>
+        <% end %>
+        <% node.remove_column do %>
+          <% unless simple || !page.respond_to?(:published_at) %><td class="remove"><%= link_to image('remove', :alt => 'remove page'), remove_admin_page_url(:id => page) %></td><% else %><td class="remove"></td><% end %>
+        <% end %>
+      <% end %>
+    </tr>
+<%
+if expanded
+  children.each do |child|
+-%>
+<%= render_node child, :level => level + 1, :simple => simple -%>
+<%
+  end
+end
+-%>
