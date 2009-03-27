@@ -11,7 +11,7 @@
               = expander
               = icon + node_title
               - SiteLanguage.codes.each do |l|
-                = link_to(l, translated_page_edit_url(:id => page, :language => l))
+                = link_to(l, translated_admin_page_edit_url(:id => page, :language => l))
             - else
               = expander + link_to("#{icon} #{node_title}", page_edit_url(:id => page), :title => page.url)
             = page_type + spinner
@@ -19,7 +19,7 @@
             - if defined?(SiteLanguage) && SiteLanguage.count > 0
               = expander + page.name
               - SiteLanguage.codes.each do |l|
-                = link_to(l, translated_page_edit_url(:id => page, :language => l))
+                = link_to(l, translated_admin_page_edit_url(:id => page, :language => l))
             - else
               = expander + link_to("#{icon} #{node_title}", page_edit_url(:id => page), :title => page.url)
             = page_type
