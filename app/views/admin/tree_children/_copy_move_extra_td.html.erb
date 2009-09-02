@@ -1,8 +1,4 @@
 <% @stylesheets << 'admin/copy_move' %>
-<td class="copy-move">
-<% unless simple || !(Page === page)-%>
-  <%= link_to image('copy-move', :alt => 'CopyMove'), copy_move_index_url(:id => page) %><% end %>
-</td>
 
 <% unless simple %> 
   <td class="copy-move">
