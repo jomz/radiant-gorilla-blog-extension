@@ -197,6 +197,10 @@ module BlogTags
     end
   end
   
+  tag 'fix_links_for_syndication' do |tag|
+    fix_for_syndication(tag.expand, "#{tag.globals.page.request.protocol}#{tag.globals.page.request.host_with_port}")
+  end
+  
   private
   
   def find_archive_items_in(url, status = "")
@@ -254,6 +258,10 @@ module BlogTags
       end
     end
     options
+  end
+  
+  def fix_for_syndication(text, host)
+    text.gsub(/href=('|")([^(http:|mailto:)].*?)('|")/, 'href="' + host + '\2"').gsub(/src=('|")([^http:].*?)('|")/, 'src="' + host + '\2"')
   end
   
 end
