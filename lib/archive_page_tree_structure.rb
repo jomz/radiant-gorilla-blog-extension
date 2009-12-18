@@ -42,6 +42,10 @@ module ArchivePageTreeStructure
     def self.display_name
       'Page'
     end
+    
+    def children
+      tree_children
+    end
   end
   
   class ArchiveYearTreePage < ArchiveTreePage
